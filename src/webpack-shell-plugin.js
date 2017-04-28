@@ -8,7 +8,8 @@ const defaultOptions = {
   onBuildExit: [],
   dev: true,
   verbose: false,
-  safe: false
+  safe: false,
+  swallowError: false
 };
 
 export default class WebpackShellPlugin {
@@ -17,7 +18,7 @@ export default class WebpackShellPlugin {
   }
 
   puts(error, stdout, stderr) {
-    if (error) {
+    if (error && !swallowError) {
       throw error;
     }
   }
