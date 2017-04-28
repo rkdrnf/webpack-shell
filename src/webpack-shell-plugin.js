@@ -18,7 +18,7 @@ export default class WebpackShellPlugin {
   }
 
   puts(error, stdout, stderr) {
-    if (error && !swallowError) {
+    if (error && !this.options.swallowError) {
       throw error;
     }
   }
