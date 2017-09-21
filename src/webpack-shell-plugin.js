@@ -8,7 +8,8 @@ const defaultOptions = {
   onBuildExit: [],
   dev: true,
   verbose: false,
-  safe: false
+  safe: false,
+  swallowError: false
 };
 
 export default class WebpackShellPlugin {
@@ -16,8 +17,8 @@ export default class WebpackShellPlugin {
     this.options = this.validateInput(this.mergeOptions(options, defaultOptions));
   }
 
-  puts(error, stdout, stderr) {
-    if (error) {
+  puts(error) {
+    if (error && !this.options.swallowError) {
       throw error;
     }
   }
@@ -38,11 +39,11 @@ export default class WebpackShellPlugin {
 
   handleScript(script) {
     if (os.platform() === 'win32' || this.options.safe) {
-      this.spreadStdoutAndStdErr(exec(script, this.puts));
+      this.spreadStdoutAndStdErr(exec(script, this.puts.bind(this)));
     } else {
       const {command, args} = this.serializeScript(script);
       const proc = spawn(command, args, {stdio: 'inherit'});
-      proc.on('close', this.puts);
+      proc.on('close', this.puts.bind(this));
     }
   }
 
