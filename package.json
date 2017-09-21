@@ -1,7 +1,7 @@
 {
-  "name": "webpack-shell-plugin",
-  "version": "0.6.0",
-  "description": "Run shell commands before and after webpack builds",
+  "name": "webpack-shell",
+  "version": "0.1.0",
+  "description": "Run shell commands in webpack build cycle",
   "main": "lib/index.js",
   "scripts": {
     "test": "webpack",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/1337programming/webpack-shell-plugin.git"
+    "url": "https://github.com/rkdrnf/webpack-shell.git"
   },
   "keywords": [
     "webpack",
@@ -23,10 +23,7 @@
     "serve",
     "hmr",
     "browser",
-    "script",
-    "opie",
-    "manion",
-    "1337"
+    "script"
   ],
   "license": "MIT",
   "bugs": {
